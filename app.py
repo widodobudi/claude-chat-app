@@ -647,12 +647,14 @@ def get_railway_projects_internal():
     
     query = """
     query {
-      projects {
-        edges {
-          node {
-            id
-            name
-            description
+      me {
+        projects {
+          edges {
+            node {
+              id
+              name
+              description
+            }
           }
         }
       }
@@ -666,14 +668,17 @@ def get_railway_projects_internal():
                 'Authorization': f'Bearer {RAILWAY_API_TOKEN}',
                 'Content-Type': 'application/json'
             },
-            json={'query': query}
+            json={'query': query},
+            timeout=15
         )
         
         if res.status_code == 200:
             data = res.json()
-            projects = [edge['node'] for edge in data.get('data', {}).get('projects', {}).get('edges', [])]
+            if data.get('errors'):
+                return {"error": f"Railway GraphQL error: {data['errors'][0].get('message', str(data['errors']))}"}
+            projects = [edge['node'] for edge in data.get('data', {}).get('me', {}).get('projects', {}).get('edges', [])]
             return {"projects": projects}
-        return {"error": f"Railway API error: {res.status_code}"}
+        return {"error": f"Railway API HTTP error: {res.status_code} - {res.text[:200]}"}
     except Exception as e:
         return {"error": str(e)}
 
@@ -712,10 +717,12 @@ def get_railway_services_internal(project_id):
         
         if res.status_code == 200:
             data = res.json()
+            if data.get('errors'):
+                return {"error": f"Railway GraphQL error: {data['errors'][0].get('message', str(data['errors']))}"}
             services = [edge['node'] for edge in 
                        data.get('data', {}).get('project', {}).get('services', {}).get('edges', [])]
             return {"services": services}
-        return {"error": f"Railway API error: {res.status_code}"}
+        return {"error": f"Railway API HTTP error: {res.status_code} - {res.text[:200]}"}
     except Exception as e:
         return {"error": str(e)}
 
@@ -725,15 +732,15 @@ def get_railway_deployments_internal(service_id):
         return {"error": "Railway API token not configured"}
     
     query = """
-    query service($id: String!) {
-      service(id: $id) {
-        deployments(first: 10) {
-          edges {
-            node {
-              id
-              status
-              createdAt
-            }
+    query deployments($serviceId: String!) {
+      deployments(first: 10, input: { serviceId: $serviceId }) {
+        edges {
+          node {
+            id
+            status
+            createdAt
+            updatedAt
+            meta
           }
         }
       }
@@ -749,22 +756,25 @@ def get_railway_deployments_internal(service_id):
             },
             json={
                 'query': query,
-                'variables': {'id': service_id}
-            }
+                'variables': {'serviceId': service_id}
+            },
+            timeout=15
         )
         
         if res.status_code == 200:
             data = res.json()
+            if data.get('errors'):
+                return {"error": f"Railway GraphQL error: {data['errors'][0].get('message', str(data['errors']))}"}
             deployments = [edge['node'] for edge in 
-                          data.get('data', {}).get('service', {}).get('deployments', {}).get('edges', [])]
+                          data.get('data', {}).get('deployments', {}).get('edges', [])]
             
             return {
                 "success": True,
                 "total": len(deployments),
                 "deployments": deployments,
-                "note": "Untuk melihat logs detail dari deployment, akses Railway Dashboard → Service → Deploy Logs tab"
+                "note": "Untuk melihat logs detail, akses Railway Dashboard → Service → Deploy Logs tab"
             }
-        return {"error": f"Railway API error: {res.status_code}"}
+        return {"error": f"Railway API HTTP error: {res.status_code} - {res.text[:200]}"}
     except Exception as e:
         return {"error": str(e)}
 
@@ -793,8 +803,11 @@ def railway_redeploy_internal(service_id):
         )
         
         if res.status_code == 200:
+            data = res.json()
+            if data.get('errors'):
+                return {"error": f"Railway GraphQL error: {data['errors'][0].get('message', str(data['errors']))}"}
             return {"success": True, "message": "Service redeployed successfully"}
-        return {"error": f"Railway API error: {res.status_code}"}
+        return {"error": f"Railway API HTTP error: {res.status_code} - {res.text[:200]}"}
     except Exception as e:
         return {"error": str(e)}
 
