@@ -26,7 +26,7 @@
             display: flex;
             overflow: hidden;
         }
-
+ 
         /* SIDEBAR */
         .sidebar {
             width: var(--sidebar-width);
@@ -131,7 +131,7 @@
         }
         .user-name { font-size: 0.85rem; font-weight: 500; }
         .user-plan { font-size: 0.72rem; color: var(--text-muted); }
-
+ 
         /* MAIN */
         .main {
             flex: 1;
@@ -139,7 +139,7 @@
             flex-direction: column;
             overflow: hidden;
         }
-
+ 
         /* TOPBAR */
         .topbar {
             display: flex;
@@ -179,7 +179,7 @@
             border-color: var(--accent);
             color: var(--text-primary);
         }
-
+ 
         /* CHAT AREA */
         .chat-area {
             flex: 1;
@@ -195,7 +195,7 @@
             border-radius: 4px;
         }
         .chat-area::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-
+ 
         /* WELCOME SCREEN */
         .welcome-screen {
             display: flex;
@@ -250,7 +250,7 @@
             font-size: 0.75rem;
             color: var(--text-muted);
         }
-
+ 
         /* MESSAGES */
         .messages-container {
             display: none;
@@ -387,7 +387,7 @@
             background: var(--bg-primary);
             color: var(--text-primary);
         }
-
+ 
         /* TYPING INDICATOR */
         .typing-indicator {
             display: flex;
@@ -414,7 +414,7 @@
             0%, 60%, 100% { opacity: 0.3; }
             30% { opacity: 1; }
         }
-
+ 
         /* ATTACHMENT PREVIEW */
         .attachment-preview {
             display: flex;
@@ -498,7 +498,7 @@
         .attachment-remove:hover {
             color: #d32f2f;
         }
-
+ 
         /* Message with images */
         .message-images {
             display: flex;
@@ -517,7 +517,7 @@
         .message-images img:hover {
             transform: scale(1.02);
         }
-
+ 
         /* INPUT AREA */
         .input-container {
             padding: 16px 20px;
@@ -608,7 +608,7 @@
             font-size: 0.75rem;
             color: var(--text-muted);
         }
-
+ 
         /* TOAST */
         .toast {
             position: fixed;
@@ -630,7 +630,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-
+ 
         /* MODAL */
         .modal {
             display: none;
@@ -762,7 +762,7 @@
             color: var(--text-primary);
             border-color: var(--accent);
         }
-
+ 
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .sidebar { width: 100%; max-width: 280px; }
@@ -774,17 +774,17 @@
     </style>
 </head>
 <body>
-
+ 
 <!-- SIDEBAR -->
 <div class="sidebar">
     <div class="sidebar-header">
-        <div class="logo">👋¤ Claude</div>
+        <div class="logo">🤖 Claude</div>
         <button class="new-chat-btn" onclick="newChat()">+ New</button>
     </div>
-
+ 
     <div class="sidebar-label">Today</div>
     <div id="chatHistory"></div>
-
+ 
     <div class="sidebar-bottom">
         <div class="user-profile">
             <div class="avatar">W</div>
@@ -795,14 +795,14 @@
         </div>
     </div>
 </div>
-
+ 
 <!-- MAIN -->
 <div class="main">
     <!-- TOPBAR -->
     <div class="topbar">
         <div id="currentChat" class="chat-title">
             <span id="currentChatTitle">Chat baru</span>
-            <button class="rename-current-btn" onclick="renameCurrentChat()" title="Rename chat">✅ï¸</button>
+            <button class="rename-current-btn" onclick="renameCurrentChat()" title="Rename chat">✏️</button>
         </div>
         <select class="model-selector" id="modelSelector">
             <option value="claude-opus-4-8">Claude Opus 4.8</option>
@@ -810,37 +810,37 @@
             <option value="claude-sonnet-4" selected>Claude Sonnet 4.6</option>
     </select>
     </div>
-
+ 
     <!-- CHAT AREA -->
     <div class="chat-area" id="chatArea">
         <!-- WELCOME SCREEN -->
         <div class="welcome-screen" id="welcomeScreen">
-            <div class="welcome-title">Hello, widodobudi! 👋</div>
+            <div class="welcome-title">Hello, widodobudi! 👋</div>
             <div class="welcome-subtitle">Bagaimana saya bisa membantu Anda hari ini?</div>
             <div class="suggestions">
                 <div class="suggestion-card" onclick="useSuggestion('Cek isi Google Drive saya')">
-                    <div class="suggestion-title">👋 Google Drive</div>
+                    <div class="suggestion-title">📁 Google Drive</div>
                     <div class="suggestion-desc">Lihat file di Drive Anda</div>
                 </div>
                 <div class="suggestion-card" onclick="useSuggestion('List semua file di GitHub repo')">
-                    <div class="suggestion-title">👋§ GitHub Repo</div>
+                    <div class="suggestion-title">🔧 GitHub Repo</div>
                     <div class="suggestion-desc">Kelola file di repository</div>
                 </div>
                 <div class="suggestion-card" onclick="useSuggestion('Cek status deployment Railway terbaru')">
-                    <div class="suggestion-title">👋 Deploy Status</div>
+                    <div class="suggestion-title">🚄 Deploy Status</div>
                     <div class="suggestion-desc">Monitor deployment</div>
                 </div>
                 <div class="suggestion-card" onclick="useSuggestion('Bantu saya coding Python')">
-                    <div class="suggestion-title">👋» Coding Help</div>
+                    <div class="suggestion-title">💻 Coding Help</div>
                     <div class="suggestion-desc">Bantuan programming</div>
                 </div>
             </div>
         </div>
-
+ 
         <!-- MESSAGES -->
         <div class="messages-container" id="messagesContainer"></div>
     </div>
-
+ 
     <!-- INPUT AREA -->
     <div class="input-container">
         <!-- Attachment Preview -->
@@ -856,16 +856,16 @@
                 oninput="autoResize(this)"
             ></textarea>
             <button class="send-btn" id="sendBtn" onclick="sendMessage()">
-                <span style="font-size:1rem;">✅¤</span>
+                <span style="font-size:1rem;">➤</span>
             </button>
         </div>
         <div class="input-bottom">
             <div class="input-tools">
-                <button class="tool-btn" onclick="document.getElementById('attachInput').click()">👋 Attach</button>
-                <button class="tool-btn" onclick="toggleFileManager()">👋 Files</button>
-                <button class="tool-btn" onclick="checkDeployStatus()">👋 Status</button>
-                <button class="tool-btn" onclick="toggleRailway()">👋 Railway</button>
-                <button class="tool-btn" onclick="saveToGithub()">👋¾ Save</button>
+                <button class="tool-btn" onclick="document.getElementById('attachInput').click()">📎 Attach</button>
+                <button class="tool-btn" onclick="toggleFileManager()">📁 Files</button>
+                <button class="tool-btn" onclick="checkDeployStatus()">📊 Status</button>
+                <button class="tool-btn" onclick="toggleRailway()">🚄 Railway</button>
+                <button class="tool-btn" onclick="saveToGithub()">💾 Save</button>
             </div>
             <div class="char-counter">
                 <span id="charCount">0</span>
@@ -873,13 +873,13 @@
         </div>
     </div>
 </div>
-
+ 
 <!-- FILE MANAGER MODAL -->
 <div class="modal" id="fileModal">
     <div class="modal-content">
         <div class="modal-header">
-            <div class="modal-title">👋 File Manager</div>
-            <button class="modal-close" onclick="closeModal()">Ã</button>
+            <div class="modal-title">📁 File Manager</div>
+            <button class="modal-close" onclick="closeModal()">×</button>
         </div>
         <div class="modal-body">
             <div class="form-group">
@@ -893,46 +893,46 @@
         </div>
     </div>
 </div>
-
+ 
 <!-- RAILWAY MODAL -->
 <div class="modal" id="railwayModal">
     <div class="modal-content">
         <div class="modal-header">
-            <div class="modal-title">👋 Railway Management</div>
-            <button class="modal-close" onclick="closeModal()">Ã</button>
+            <div class="modal-title">🚄 Railway Management</div>
+            <button class="modal-close" onclick="closeModal()">×</button>
         </div>
         <div class="modal-body">
             <div id="railwayProjects" class="file-list"></div>
         </div>
     </div>
 </div>
-
+ 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
-
+ 
 <!-- Hidden file input for attachments -->
 <input type="file" id="attachInput" accept="image/*,.txt,.md,.py,.js,.html,.css,.json,.pdf" 
        multiple onchange="handleFileSelect(event)" style="display:none;">
-
+ 
 <script>
     let conversationHistory = [];
     let isLoading = false;
     let chatSessions = [];
     let attachments = [];
-
+ 
     function autoResize(el) {
         el.style.height = 'auto';
         el.style.height = el.scrollHeight + 'px';
         document.getElementById('charCount').textContent = el.value.length;
     }
-
+ 
     function handleKeyDown(e) {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
         }
     }
-
+ 
     document.addEventListener('DOMContentLoaded', function() {
         const userInput = document.getElementById('userInput');
         const inputWrapper = document.getElementById('inputWrapper');
@@ -956,7 +956,7 @@
                             const blob = new Blob([text], {type: 'text/plain'});
                             const file = new File([blob], 'pasted-text.txt', {type: 'text/plain'});
                             handleFilePaste(file);
-                            showToast('👋 Large text converted to file');
+                            showToast('📄 Large text converted to file');
                         }
                     });
                 }
@@ -987,7 +987,7 @@
             }
         });
     });
-
+ 
     function handleImagePaste(blob) {
         const reader = new FileReader();
         reader.onload = function(e) {
@@ -1004,11 +1004,11 @@
             });
             
             updateAttachmentPreview();
-            showToast('👋¼ï¸ Image pasted!');
+            showToast('🖼️ Image pasted!');
         };
         reader.readAsDataURL(blob);
     }
-
+ 
     function handleFilePaste(file) {
         const reader = new FileReader();
         reader.onload = function(e) {
@@ -1023,7 +1023,7 @@
         };
         reader.readAsText(file);
     }
-
+ 
     function handleMultipleFiles(files) {
         let imageCount = 0;
         let fileCount = 0;
@@ -1032,7 +1032,7 @@
             const file = files[i];
             
             if (file.size > 10 * 1024 * 1024) {
-                showToast(`✅ ${file.name} terlalu besar (max 10MB)`);
+                showToast(`❌ ${file.name} terlalu besar (max 10MB)`);
                 continue;
             }
             
@@ -1073,16 +1073,16 @@
         }
         
         if (imageCount > 0 || fileCount > 0) {
-            showToast(`👋 ${imageCount + fileCount} file(s) attached`);
+            showToast(`📎 ${imageCount + fileCount} file(s) attached`);
         }
     }
-
+ 
     function handleFileSelect(event) {
         const files = event.target.files;
         handleMultipleFiles(files);
         event.target.value = '';
     }
-
+ 
     function updateAttachmentPreview() {
         const preview = document.getElementById('attachmentPreview');
         
@@ -1114,56 +1114,56 @@
                             <div class="attachment-name" title="${att.filename}">${att.filename}</div>
                             <div class="attachment-size">${formatFileSize(att.size)}</div>
                         </div>
-                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">Ã</button>
+                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">×</button>
                     </div>
                 `;
             } else {
                 return `
                     <div class="attachment-item">
-                        <span style="font-size:1.5rem;">👋</span>
+                        <span style="font-size:1.5rem;">📄</span>
                         <div class="attachment-info">
                             <div class="attachment-name" title="${att.filename}">${att.filename}</div>
                             <div class="attachment-size">${formatFileSize(att.size)}</div>
                         </div>
-                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">Ã</button>
+                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">×</button>
                     </div>
                 `;
             }
         }).join('');
     }
-
+ 
     function removeAttachment(index) {
         attachments.splice(index, 1);
         updateAttachmentPreview();
-        showToast('👋ï¸ Attachment removed');
+        showToast('🗑️ Attachment removed');
     }
-
+ 
     function clearAllAttachments() {
         if (confirm(`Clear all ${attachments.length} attachments?`)) {
             attachments = [];
             updateAttachmentPreview();
-            showToast('👋ï¸ All attachments cleared');
+            showToast('🗑️ All attachments cleared');
         }
     }
-
+ 
     function formatFileSize(bytes) {
         if (bytes < 1024) return bytes + ' B';
         if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
         return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
     }
-
+ 
     function useSuggestion(text) {
         document.getElementById('userInput').value = text;
         sendMessage();
     }
-
+ 
     // UPDATED: Check deploy status instead of logs
     function checkDeployStatus() {
         const msg = "Tolong cek status deployment Railway terbaru dari service web saya, dan kasih tau apakah ada yang failed atau error";
         document.getElementById('userInput').value = msg;
         sendMessage();
     }
-
+ 
     function newChat() {
         if (conversationHistory.length > 0) {
             const title = document.getElementById('currentChatTitle').textContent;
@@ -1181,7 +1181,7 @@
         document.getElementById('messagesContainer').style.display = 'none';
         document.getElementById('currentChatTitle').textContent = 'Chat baru';
     }
-
+ 
     function updateChatHistory() {
         const el = document.getElementById('chatHistory');
         if (chatSessions.length === 0) {
@@ -1190,25 +1190,25 @@
         }
         el.innerHTML = chatSessions.slice(0, 10).map((s, i) =>
             `<div class="chat-item" style="display:flex;justify-content:space-between;align-items:center;padding-right:8px;gap:4px;">
-                <span onclick="loadSession(${i})" style="flex:1;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">👋¬ ${escapeHtml(s.title)}</span>
+                <span onclick="loadSession(${i})" style="flex:1;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">💬 ${escapeHtml(s.title)}</span>
                 <div style="display:flex;gap:4px;flex-shrink:0;">
                     <button onclick="event.stopPropagation();renameChatFromHistory(${i})" 
                         style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;padding:4px;font-size:0.85rem;opacity:0;transition:all 0.2s;"
                         class="rename-chat-btn"
                         title="Rename chat">
-                        ✅ï¸
+                        ✏️
                     </button>
                     <button onclick="event.stopPropagation();deleteChatFromHistory(${i})" 
                         style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;padding:4px;font-size:0.85rem;opacity:0;transition:all 0.2s;"
                         class="delete-chat-btn"
                         title="Hapus chat">
-                        👋ï¸
+                        🗑️
                     </button>
                 </div>
             </div>`
         ).join('');
     }
-
+ 
     function renameChatFromHistory(index) {
         const currentTitle = chatSessions[index].title;
         const newTitle = prompt('Rename chat:', currentTitle);
@@ -1216,24 +1216,24 @@
         if (newTitle && newTitle.trim() !== '') {
             chatSessions[index].title = newTitle.trim();
             updateChatHistory();
-            showToast('✅ï¸ Chat berhasil direname');
+            showToast('✏️ Chat berhasil direname');
         }
     }
-
+ 
     function deleteChatFromHistory(index) {
         const chatTitle = chatSessions[index].title;
         if (confirm(`Hapus chat "${chatTitle}" dari riwayat?`)) {
             chatSessions.splice(index, 1);
             updateChatHistory();
-            showToast('👋ï¸ Chat dihapus dari riwayat');
+            showToast('🗑️ Chat dihapus dari riwayat');
         }
     }
-
+ 
     function renameCurrentChat() {
         const currentTitle = document.getElementById('currentChatTitle').textContent;
         
         if (currentTitle === 'Chat baru') {
-            showToast('✅ ï¸ Belum ada chat untuk direname');
+            showToast('⚠️ Belum ada chat untuk direname');
             return;
         }
         
@@ -1241,10 +1241,10 @@
         
         if (newTitle && newTitle.trim() !== '') {
             document.getElementById('currentChatTitle').textContent = newTitle.trim();
-            showToast('✅ï¸ Chat berhasil direname');
+            showToast('✏️ Chat berhasil direname');
         }
     }
-
+ 
     function loadSession(i) {
         conversationHistory = [...chatSessions[i].history];
         attachments = [];
@@ -1260,12 +1260,12 @@
         });
         document.getElementById('currentChatTitle').textContent = chatSessions[i].title;
     }
-
+ 
     function showMessages() {
         document.getElementById('welcomeScreen').style.display = 'none';
         document.getElementById('messagesContainer').style.display = 'flex';
     }
-
+ 
     function addUserMessage(text, atts = [], scroll = true) {
         showMessages();
         const container = document.getElementById('messagesContainer');
@@ -1294,7 +1294,7 @@
             if (files.length > 0) {
                 html += '<div style="margin-top:8px;font-size:0.85rem;color:var(--text-muted);">';
                 files.forEach(f => {
-                    html += `👋 ${f.filename} (${formatFileSize(f.size)})<br>`;
+                    html += `📄 ${f.filename} (${formatFileSize(f.size)})<br>`;
                 });
                 html += '</div>';
             }
@@ -1304,7 +1304,7 @@
         container.appendChild(div);
         if (scroll) scrollToBottom();
     }
-
+ 
     function addClaudeMessage(text, scroll = true) {
         const container = document.getElementById('messagesContainer');
         const div = document.createElement('div');
@@ -1314,14 +1314,14 @@
             <div style="flex:1;">
                 <div class="claude-content">${formatMessage(text)}</div>
                 <div class="claude-actions">
-                    <button class="action-btn" onclick="copyToClipboard(\`${escapeForAttr(text)}\`)">👋 Copy</button>
+                    <button class="action-btn" onclick="copyToClipboard(\`${escapeForAttr(text)}\`)">📋 Copy</button>
                 </div>
             </div>
         `;
         container.appendChild(div);
         if (scroll) scrollToBottom();
     }
-
+ 
     function showTyping() {
         const container = document.getElementById('messagesContainer');
         const div = document.createElement('div');
@@ -1338,19 +1338,19 @@
         container.appendChild(div);
         scrollToBottom();
     }
-
+ 
     function hideTyping() {
         const el = document.getElementById('typingIndicator');
         if (el) el.remove();
     }
-
+ 
     function formatMessage(text) {
         text = text.replace(/```(\w+)?\n?([\s\S]*?)```/g, (match, lang, code) => {
             const language = lang || 'code';
             return `<div class="code-block-wrapper">
                 <div class="code-header">
                     <span>${language}</span>
-                    <button class="copy-btn" onclick="copyToClipboard(\`${escapeForAttr(code.trim())}\`)">👋 Copy code</button>
+                    <button class="copy-btn" onclick="copyToClipboard(\`${escapeForAttr(code.trim())}\`)">📋 Copy code</button>
                 </div>
                 <pre><code>${escapeHtml(code.trim())}</code></pre>
             </div>`;
@@ -1372,7 +1372,7 @@
         
         return text;
     }
-
+ 
     function escapeHtml(text) {
         return String(text)
             .replace(/&/g, '&amp;')
@@ -1380,33 +1380,33 @@
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;');
     }
-
+ 
     function escapeForAttr(text) {
         return String(text).replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
     }
-
+ 
     function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => showToast('✅ Copied!'));
+        navigator.clipboard.writeText(text).then(() => showToast('✅ Copied!'));
     }
-
+ 
     function scrollToBottom() {
         const area = document.getElementById('chatArea');
         setTimeout(() => area.scrollTop = area.scrollHeight, 50);
     }
-
+ 
     async function sendMessage() {
         if (isLoading) return;
         const input = document.getElementById('userInput');
         const message = input.value.trim();
         
         if (!message && attachments.length === 0) return;
-
+ 
         isLoading = true;
         document.getElementById('sendBtn').disabled = true;
         input.value = '';
         input.style.height = 'auto';
         document.getElementById('charCount').textContent = '0';
-
+ 
         addUserMessage(message, attachments);
         showTyping();
         
@@ -1415,12 +1415,12 @@
             content: message,
             attachments: [...attachments]
         });
-
+ 
         const apiAttachments = [...attachments];
         
         attachments = [];
         updateAttachmentPreview();
-
+ 
         try {
             const response = await fetch('/chat', {
                 method: 'POST',
@@ -1430,10 +1430,10 @@
                     attachments: apiAttachments
                 })
             });
-
+ 
             const data = await response.json();
             hideTyping();
-
+ 
             if (response.ok) {
                 addClaudeMessage(data.reply);
                 conversationHistory.push({ role: 'assistant', content: data.reply });
@@ -1443,62 +1443,62 @@
                         message.substring(0, 30) + (message.length > 30 ? '...' : '');
                 }
             } else {
-                addClaudeMessage(`✅ Error: ${data.error || 'Unknown error'}`);
+                addClaudeMessage(`❌ Error: ${data.error || 'Unknown error'}`);
             }
         } catch (err) {
             hideTyping();
-            addClaudeMessage(`✅ Network error: ${err.message}`);
+            addClaudeMessage(`❌ Network error: ${err.message}`);
         } finally {
             isLoading = false;
             document.getElementById('sendBtn').disabled = false;
         }
     }
-
+ 
     function showToast(message) {
         const toast = document.getElementById('toast');
         toast.textContent = message;
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
-
+ 
     function closeModal() {
         document.querySelectorAll('.modal').forEach(m => m.classList.remove('show'));
     }
-
+ 
     async function toggleFileManager() {
         const modal = document.getElementById('fileModal');
         modal.classList.add('show');
         
-        showToast('👋 Loading files...');
+        showToast('🔄 Loading files...');
         document.getElementById('githubFileList').innerHTML = '<p style="color:var(--text-muted);">Loading GitHub files...</p>';
         document.getElementById('driveFileList').innerHTML = '<p style="color:var(--text-muted);">Loading Drive files...</p>';
     }
-
+ 
     async function toggleRailway() {
         const modal = document.getElementById('railwayModal');
         modal.classList.add('show');
         
-        showToast('👋 Loading Railway projects...');
+        showToast('🔄 Loading Railway projects...');
         document.getElementById('railwayProjects').innerHTML = '<p style="color:var(--text-muted);">Loading projects...</p>';
     }
-
+ 
     async function saveToGithub() {
         if (conversationHistory.length === 0) {
-            showToast('✅ ï¸ No conversation to save');
+            showToast('⚠️ No conversation to save');
             return;
         }
         
-        showToast('👋¾ Saving to GitHub...');
+        showToast('💾 Saving to GitHub...');
         
         try {
             const response = await fetch('/clear', { method: 'POST' });
             if (response.ok) {
-                showToast('✅ Saved to GitHub!');
+                showToast('✅ Saved to GitHub!');
             } else {
-                showToast('✅ Failed to save');
+                showToast('❌ Failed to save');
             }
         } catch (err) {
-            showToast('✅ Error saving');
+            showToast('❌ Error saving');
         }
     }
 </script>
