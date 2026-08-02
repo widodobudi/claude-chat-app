@@ -802,7 +802,7 @@
     <div class="topbar">
         <div id="currentChat" class="chat-title">
             <span id="currentChatTitle">Chat baru</span>
-            <button class="rename-current-btn" onclick="renameCurrentChat()" title="Rename chat">âï¸</button>
+            <button class="rename-current-btn" onclick="renameCurrentChat()" title="Rename chat"></button>
         </div>
         <select class="model-selector" id="modelSelector">
             <option value="claude-opus-4-8">Claude Opus 4.8</option>
@@ -815,7 +815,7 @@
     <div class="chat-area" id="chatArea">
         <!-- WELCOME SCREEN -->
         <div class="welcome-screen" id="welcomeScreen">
-            <div class="welcome-title">Halo, widodobudi!</div>
+            <div class="welcome-title">Halo, widodobudi! 👋 👋</div>
             <div class="welcome-subtitle">Bagaimana saya bisa membantu Anda hari ini?</div>
             <div class="suggestions">
                 <div class="suggestion-card" onclick="useSuggestion('Cek isi Google Drive saya')">
@@ -856,7 +856,7 @@
                 oninput="autoResize(this)"
             ></textarea>
             <button class="send-btn" id="sendBtn" onclick="sendMessage()">
-                <span style="font-size:1rem;">â¤</span>
+                <span style="font-size:1rem;"></span>
             </button>
         </div>
         <div class="input-bottom">
@@ -1032,7 +1032,7 @@
             const file = files[i];
             
             if (file.size > 10 * 1024 * 1024) {
-                showToast(`â ${file.name} terlalu besar (max 10MB)`);
+                showToast(` ${file.name} terlalu besar (max 10MB)`);
                 continue;
             }
             
@@ -1196,7 +1196,7 @@
                         style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;padding:4px;font-size:0.85rem;opacity:0;transition:all 0.2s;"
                         class="rename-chat-btn"
                         title="Rename chat">
-                        âï¸
+                        
                     </button>
                     <button onclick="event.stopPropagation();deleteChatFromHistory(${i})" 
                         style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;padding:4px;font-size:0.85rem;opacity:0;transition:all 0.2s;"
@@ -1216,7 +1216,7 @@
         if (newTitle && newTitle.trim() !== '') {
             chatSessions[index].title = newTitle.trim();
             updateChatHistory();
-            showToast('âï¸ Chat berhasil direname');
+            showToast(' Chat berhasil direname');
         }
     }
 
@@ -1233,7 +1233,7 @@
         const currentTitle = document.getElementById('currentChatTitle').textContent;
         
         if (currentTitle === 'Chat baru') {
-            showToast('â ï¸ Belum ada chat untuk direname');
+            showToast(' ï¸ Belum ada chat untuk direname');
             return;
         }
         
@@ -1241,7 +1241,7 @@
         
         if (newTitle && newTitle.trim() !== '') {
             document.getElementById('currentChatTitle').textContent = newTitle.trim();
-            showToast('âï¸ Chat berhasil direname');
+            showToast(' Chat berhasil direname');
         }
     }
 
@@ -1386,7 +1386,7 @@
     }
 
     function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => showToast('â Copied!'));
+        navigator.clipboard.writeText(text).then(() => showToast(' Copied!'));
     }
 
     function scrollToBottom() {
@@ -1443,11 +1443,11 @@
                         message.substring(0, 30) + (message.length > 30 ? '...' : '');
                 }
             } else {
-                addClaudeMessage(`â Error: ${data.error || 'Unknown error'}`);
+                addClaudeMessage(` Error: ${data.error || 'Unknown error'}`);
             }
         } catch (err) {
             hideTyping();
-            addClaudeMessage(`â Network error: ${err.message}`);
+            addClaudeMessage(` Network error: ${err.message}`);
         } finally {
             isLoading = false;
             document.getElementById('sendBtn').disabled = false;
@@ -1484,7 +1484,7 @@
 
     async function saveToGithub() {
         if (conversationHistory.length === 0) {
-            showToast('â ï¸ No conversation to save');
+            showToast(' ï¸ No conversation to save');
             return;
         }
         
@@ -1493,12 +1493,12 @@
         try {
             const response = await fetch('/clear', { method: 'POST' });
             if (response.ok) {
-                showToast('â Saved to GitHub!');
+                showToast(' Saved to GitHub!');
             } else {
-                showToast('â Failed to save');
+                showToast(' Failed to save');
             }
         } catch (err) {
-            showToast('â Error saving');
+            showToast(' Error saving');
         }
     }
 </script>
