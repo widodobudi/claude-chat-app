@@ -19,7 +19,7 @@
             --sidebar-width: 260px;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             height: 100vh;
@@ -778,7 +778,7 @@
 <!-- SIDEBAR -->
 <div class="sidebar">
     <div class="sidebar-header">
-        <div class="logo"> Claude</div>
+        <div class="logo">🤖 Claude</div>
         <button class="new-chat-btn" onclick="newChat()">+ New</button>
     </div>
 
@@ -802,7 +802,7 @@
     <div class="topbar">
         <div id="currentChat" class="chat-title">
             <span id="currentChatTitle">Chat baru</span>
-            <button class="rename-current-btn" onclick="renameCurrentChat()" title="Rename chat"></button>
+            <button class="rename-current-btn" onclick="renameCurrentChat()" title="Rename chat">✏️</button>
         </div>
         <select class="model-selector" id="modelSelector">
             <option value="claude-opus-4-8">Claude Opus 4.8</option>
@@ -815,23 +815,23 @@
     <div class="chat-area" id="chatArea">
         <!-- WELCOME SCREEN -->
         <div class="welcome-screen" id="welcomeScreen">
-            <div class="welcome-title">Halo, widodobudi! 👋 👋</div>
+            <div class="welcome-title">Hello, widodobudi! 👋</div>
             <div class="welcome-subtitle">Bagaimana saya bisa membantu Anda hari ini?</div>
             <div class="suggestions">
                 <div class="suggestion-card" onclick="useSuggestion('Cek isi Google Drive saya')">
-                    <div class="suggestion-title"> Google Drive</div>
+                    <div class="suggestion-title">📁 Google Drive</div>
                     <div class="suggestion-desc">Lihat file di Drive Anda</div>
                 </div>
                 <div class="suggestion-card" onclick="useSuggestion('List semua file di GitHub repo')">
-                    <div class="suggestion-title"> GitHub Repo</div>
+                    <div class="suggestion-title">🔧 GitHub Repo</div>
                     <div class="suggestion-desc">Kelola file di repository</div>
                 </div>
                 <div class="suggestion-card" onclick="useSuggestion('Cek status deployment Railway terbaru')">
-                    <div class="suggestion-title"> Deploy Status</div>
+                    <div class="suggestion-title">🚄 Deploy Status</div>
                     <div class="suggestion-desc">Monitor deployment</div>
                 </div>
                 <div class="suggestion-card" onclick="useSuggestion('Bantu saya coding Python')">
-                    <div class="suggestion-title"> Coding Help</div>
+                    <div class="suggestion-title">💻 Coding Help</div>
                     <div class="suggestion-desc">Bantuan programming</div>
                 </div>
             </div>
@@ -856,16 +856,16 @@
                 oninput="autoResize(this)"
             ></textarea>
             <button class="send-btn" id="sendBtn" onclick="sendMessage()">
-                <span style="font-size:1rem;"></span>
+                <span style="font-size:1rem;">➤</span>
             </button>
         </div>
         <div class="input-bottom">
             <div class="input-tools">
-                <button class="tool-btn" onclick="document.getElementById('attachInput').click()"> Attach</button>
-                <button class="tool-btn" onclick="toggleFileManager()"> Files</button>
-                <button class="tool-btn" onclick="checkDeployStatus()"> Status</button>
-                <button class="tool-btn" onclick="toggleRailway()"> Railway</button>
-                <button class="tool-btn" onclick="saveToGithub()"> Save</button>
+                <button class="tool-btn" onclick="document.getElementById('attachInput').click()">📎 Attach</button>
+                <button class="tool-btn" onclick="toggleFileManager()">📁 Files</button>
+                <button class="tool-btn" onclick="checkDeployStatus()">📊 Status</button>
+                <button class="tool-btn" onclick="toggleRailway()">🚄 Railway</button>
+                <button class="tool-btn" onclick="saveToGithub()">💾 Save</button>
             </div>
             <div class="char-counter">
                 <span id="charCount">0</span>
@@ -878,8 +878,8 @@
 <div class="modal" id="fileModal">
     <div class="modal-content">
         <div class="modal-header">
-            <div class="modal-title"> File Manager</div>
-            <button class="modal-close" onclick="closeModal()">Ã</button>
+            <div class="modal-title">📁 File Manager</div>
+            <button class="modal-close" onclick="closeModal()">×</button>
         </div>
         <div class="modal-body">
             <div class="form-group">
@@ -898,8 +898,8 @@
 <div class="modal" id="railwayModal">
     <div class="modal-content">
         <div class="modal-header">
-            <div class="modal-title"> Railway Management</div>
-            <button class="modal-close" onclick="closeModal()">Ã</button>
+            <div class="modal-title">🚄 Railway Management</div>
+            <button class="modal-close" onclick="closeModal()">×</button>
         </div>
         <div class="modal-body">
             <div id="railwayProjects" class="file-list"></div>
@@ -956,7 +956,7 @@
                             const blob = new Blob([text], {type: 'text/plain'});
                             const file = new File([blob], 'pasted-text.txt', {type: 'text/plain'});
                             handleFilePaste(file);
-                            showToast(' Large text converted to file');
+                            showToast('📄 Large text converted to file');
                         }
                     });
                 }
@@ -1004,7 +1004,7 @@
             });
             
             updateAttachmentPreview();
-            showToast(' Image pasted!');
+            showToast('🖼️ Image pasted!');
         };
         reader.readAsDataURL(blob);
     }
@@ -1032,7 +1032,7 @@
             const file = files[i];
             
             if (file.size > 10 * 1024 * 1024) {
-                showToast(` ${file.name} terlalu besar (max 10MB)`);
+                showToast(`❌ ${file.name} terlalu besar (max 10MB)`);
                 continue;
             }
             
@@ -1073,7 +1073,7 @@
         }
         
         if (imageCount > 0 || fileCount > 0) {
-            showToast(` ${imageCount + fileCount} file(s) attached`);
+            showToast(`📎 ${imageCount + fileCount} file(s) attached`);
         }
     }
 
@@ -1114,18 +1114,18 @@
                             <div class="attachment-name" title="${att.filename}">${att.filename}</div>
                             <div class="attachment-size">${formatFileSize(att.size)}</div>
                         </div>
-                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">Ã</button>
+                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">×</button>
                     </div>
                 `;
             } else {
                 return `
                     <div class="attachment-item">
-                        <span style="font-size:1.5rem;"></span>
+                        <span style="font-size:1.5rem;">📄</span>
                         <div class="attachment-info">
                             <div class="attachment-name" title="${att.filename}">${att.filename}</div>
                             <div class="attachment-size">${formatFileSize(att.size)}</div>
                         </div>
-                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">Ã</button>
+                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">×</button>
                     </div>
                 `;
             }
@@ -1135,14 +1135,14 @@
     function removeAttachment(index) {
         attachments.splice(index, 1);
         updateAttachmentPreview();
-        showToast(' Attachment removed');
+        showToast('🗑️ Attachment removed');
     }
 
     function clearAllAttachments() {
         if (confirm(`Clear all ${attachments.length} attachments?`)) {
             attachments = [];
             updateAttachmentPreview();
-            showToast(' All attachments cleared');
+            showToast('🗑️ All attachments cleared');
         }
     }
 
@@ -1190,19 +1190,19 @@
         }
         el.innerHTML = chatSessions.slice(0, 10).map((s, i) =>
             `<div class="chat-item" style="display:flex;justify-content:space-between;align-items:center;padding-right:8px;gap:4px;">
-                <span onclick="loadSession(${i})" style="flex:1;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"> ${escapeHtml(s.title)}</span>
+                <span onclick="loadSession(${i})" style="flex:1;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">💬 ${escapeHtml(s.title)}</span>
                 <div style="display:flex;gap:4px;flex-shrink:0;">
                     <button onclick="event.stopPropagation();renameChatFromHistory(${i})" 
                         style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;padding:4px;font-size:0.85rem;opacity:0;transition:all 0.2s;"
                         class="rename-chat-btn"
                         title="Rename chat">
-                        
+                        ✏️
                     </button>
                     <button onclick="event.stopPropagation();deleteChatFromHistory(${i})" 
                         style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;padding:4px;font-size:0.85rem;opacity:0;transition:all 0.2s;"
                         class="delete-chat-btn"
                         title="Hapus chat">
-                        
+                        🗑️
                     </button>
                 </div>
             </div>`
@@ -1216,7 +1216,7 @@
         if (newTitle && newTitle.trim() !== '') {
             chatSessions[index].title = newTitle.trim();
             updateChatHistory();
-            showToast(' Chat berhasil direname');
+            showToast('✏️ Chat berhasil direname');
         }
     }
 
@@ -1225,7 +1225,7 @@
         if (confirm(`Hapus chat "${chatTitle}" dari riwayat?`)) {
             chatSessions.splice(index, 1);
             updateChatHistory();
-            showToast(' Chat dihapus dari riwayat');
+            showToast('🗑️ Chat dihapus dari riwayat');
         }
     }
 
@@ -1233,7 +1233,7 @@
         const currentTitle = document.getElementById('currentChatTitle').textContent;
         
         if (currentTitle === 'Chat baru') {
-            showToast(' ï¸ Belum ada chat untuk direname');
+            showToast('⚠️ Belum ada chat untuk direname');
             return;
         }
         
@@ -1241,7 +1241,7 @@
         
         if (newTitle && newTitle.trim() !== '') {
             document.getElementById('currentChatTitle').textContent = newTitle.trim();
-            showToast(' Chat berhasil direname');
+            showToast('✏️ Chat berhasil direname');
         }
     }
 
@@ -1294,7 +1294,7 @@
             if (files.length > 0) {
                 html += '<div style="margin-top:8px;font-size:0.85rem;color:var(--text-muted);">';
                 files.forEach(f => {
-                    html += ` ${f.filename} (${formatFileSize(f.size)})<br>`;
+                    html += `📄 ${f.filename} (${formatFileSize(f.size)})<br>`;
                 });
                 html += '</div>';
             }
@@ -1314,7 +1314,7 @@
             <div style="flex:1;">
                 <div class="claude-content">${formatMessage(text)}</div>
                 <div class="claude-actions">
-                    <button class="action-btn" onclick="copyToClipboard(\`${escapeForAttr(text)}\`)"> Copy</button>
+                    <button class="action-btn" onclick="copyToClipboard(\`${escapeForAttr(text)}\`)">📋 Copy</button>
                 </div>
             </div>
         `;
@@ -1350,7 +1350,7 @@
             return `<div class="code-block-wrapper">
                 <div class="code-header">
                     <span>${language}</span>
-                    <button class="copy-btn" onclick="copyToClipboard(\`${escapeForAttr(code.trim())}\`)"> Copy code</button>
+                    <button class="copy-btn" onclick="copyToClipboard(\`${escapeForAttr(code.trim())}\`)">📋 Copy code</button>
                 </div>
                 <pre><code>${escapeHtml(code.trim())}</code></pre>
             </div>`;
@@ -1386,7 +1386,7 @@
     }
 
     function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => showToast(' Copied!'));
+        navigator.clipboard.writeText(text).then(() => showToast('✅ Copied!'));
     }
 
     function scrollToBottom() {
@@ -1443,11 +1443,11 @@
                         message.substring(0, 30) + (message.length > 30 ? '...' : '');
                 }
             } else {
-                addClaudeMessage(` Error: ${data.error || 'Unknown error'}`);
+                addClaudeMessage(`❌ Error: ${data.error || 'Unknown error'}`);
             }
         } catch (err) {
             hideTyping();
-            addClaudeMessage(` Network error: ${err.message}`);
+            addClaudeMessage(`❌ Network error: ${err.message}`);
         } finally {
             isLoading = false;
             document.getElementById('sendBtn').disabled = false;
@@ -1469,7 +1469,7 @@
         const modal = document.getElementById('fileModal');
         modal.classList.add('show');
         
-        showToast(' Loading files...');
+        showToast('🔄 Loading files...');
         document.getElementById('githubFileList').innerHTML = '<p style="color:var(--text-muted);">Loading GitHub files...</p>';
         document.getElementById('driveFileList').innerHTML = '<p style="color:var(--text-muted);">Loading Drive files...</p>';
     }
@@ -1478,27 +1478,27 @@
         const modal = document.getElementById('railwayModal');
         modal.classList.add('show');
         
-        showToast(' Loading Railway projects...');
+        showToast('🔄 Loading Railway projects...');
         document.getElementById('railwayProjects').innerHTML = '<p style="color:var(--text-muted);">Loading projects...</p>';
     }
 
     async function saveToGithub() {
         if (conversationHistory.length === 0) {
-            showToast(' ï¸ No conversation to save');
+            showToast('⚠️ No conversation to save');
             return;
         }
         
-        showToast(' Saving to GitHub...');
+        showToast('💾 Saving to GitHub...');
         
         try {
             const response = await fetch('/clear', { method: 'POST' });
             if (response.ok) {
-                showToast(' Saved to GitHub!');
+                showToast('✅ Saved to GitHub!');
             } else {
-                showToast(' Failed to save');
+                showToast('❌ Failed to save');
             }
         } catch (err) {
-            showToast(' Error saving');
+            showToast('❌ Error saving');
         }
     }
 </script>
