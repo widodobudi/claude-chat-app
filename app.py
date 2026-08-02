@@ -16,7 +16,7 @@ app = Flask(__name__)
 # ===== KONFIGURASI =====
 CRAZYROUTER_API_KEY = os.getenv('CRAZYROUTER_API_KEY')
 API_HOST            = os.getenv('API_HOST', 'https://api.crazyrouter.com/v1')
-AI_MODEL            = os.getenv('AI_MODEL', 'claude-opus-4-8')
+AI_MODEL            = os.getenv('AI_MODEL', 'claude-sonnet-4')
 GITHUB_TOKEN        = os.getenv('GITHUB_TOKEN')
 GITHUB_REPO         = os.getenv('GITHUB_REPO', 'widodobudi/claude-chat-app')
 GOOGLE_CREDS_JSON   = os.getenv('GOOGLE_CREDENTIALS_JSON')
