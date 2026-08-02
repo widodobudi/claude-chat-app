@@ -802,10 +802,9 @@
     <div class="topbar">
         <div id="currentChat" class="chat-title">
             <span id="currentChatTitle">Chat baru</span>
-            <button class="rename-current-btn" onclick="renameCurrentChat()" title="Rename chat"></button>
+            <button class="rename-current-btn" onclick="renameCurrentChat()" title="Rename chat">✏️</button>
         </div>
         <select class="model-selector" id="modelSelector">
-            <option value="claude-opus-4-8">Claude Opus 4.8</option>
             <option value="claude-sonnet-3-5">Claude Sonnet 3.5</option>
             <option value="claude-sonnet-4" selected>Claude Sonnet 4.6</option>
     </select>
@@ -815,7 +814,7 @@
     <div class="chat-area" id="chatArea">
         <!-- WELCOME SCREEN -->
         <div class="welcome-screen" id="welcomeScreen">
-            <div class="welcome-title">Halo, widodobudi! 👋 👋</div>
+            <div class="welcome-title">Halo, widodobudi! 👋</div>
             <div class="welcome-subtitle">Bagaimana saya bisa membantu Anda hari ini?</div>
             <div class="suggestions">
                 <div class="suggestion-card" onclick="useSuggestion('Cek isi Google Drive saya')">
@@ -855,9 +854,7 @@
                 onkeydown="handleKeyDown(event)"
                 oninput="autoResize(this)"
             ></textarea>
-            <button class="send-btn" id="sendBtn" onclick="sendMessage()">
-                <span style="font-size:1rem;"></span>
-            </button>
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()">&#8593;</button>
         </div>
         <div class="input-bottom">
             <div class="input-tools">
@@ -867,9 +864,7 @@
                 <button class="tool-btn" onclick="toggleRailway()"> Railway</button>
                 <button class="tool-btn" onclick="saveToGithub()"> Save</button>
             </div>
-            <div class="char-counter">
-                <span id="charCount">0</span>
-            </div>
+            <div class="char-counter" style="display:none;"><span id="charCount">0</span></div>
         </div>
     </div>
 </div>
@@ -879,7 +874,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="modal-title"> File Manager</div>
-            <button class="modal-close" onclick="closeModal()">Ã</button>
+            <button class="modal-close" onclick="closeModal()">×</button>
         </div>
         <div class="modal-body">
             <div class="form-group">
@@ -899,7 +894,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="modal-title"> Railway Management</div>
-            <button class="modal-close" onclick="closeModal()">Ã</button>
+            <button class="modal-close" onclick="closeModal()">×</button>
         </div>
         <div class="modal-body">
             <div id="railwayProjects" class="file-list"></div>
@@ -956,7 +951,7 @@
                             const blob = new Blob([text], {type: 'text/plain'});
                             const file = new File([blob], 'pasted-text.txt', {type: 'text/plain'});
                             handleFilePaste(file);
-                            showToast(' Large text converted to file');
+                            showToast('Large text converted to file');
                         }
                     });
                 }
@@ -1004,7 +999,7 @@
             });
             
             updateAttachmentPreview();
-            showToast(' Image pasted!');
+            showToast('Image pasted!');
         };
         reader.readAsDataURL(blob);
     }
@@ -1032,7 +1027,7 @@
             const file = files[i];
             
             if (file.size > 10 * 1024 * 1024) {
-                showToast(` ${file.name} terlalu besar (max 10MB)`);
+                showToast(`${file.name} terlalu besar (max 10MB)`);
                 continue;
             }
             
@@ -1073,7 +1068,7 @@
         }
         
         if (imageCount > 0 || fileCount > 0) {
-            showToast(` ${imageCount + fileCount} file(s) attached`);
+            showToast(`${imageCount + fileCount} file(s) attached`);
         }
     }
 
@@ -1114,18 +1109,18 @@
                             <div class="attachment-name" title="${att.filename}">${att.filename}</div>
                             <div class="attachment-size">${formatFileSize(att.size)}</div>
                         </div>
-                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">Ã</button>
+                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">×</button>
                     </div>
                 `;
             } else {
                 return `
                     <div class="attachment-item">
-                        <span style="font-size:1.5rem;"></span>
+                        <span style="font-size:1.5rem;">📄</span>
                         <div class="attachment-info">
                             <div class="attachment-name" title="${att.filename}">${att.filename}</div>
                             <div class="attachment-size">${formatFileSize(att.size)}</div>
                         </div>
-                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">Ã</button>
+                        <button class="attachment-remove" onclick="removeAttachment(${idx})" title="Remove">×</button>
                     </div>
                 `;
             }
@@ -1135,14 +1130,14 @@
     function removeAttachment(index) {
         attachments.splice(index, 1);
         updateAttachmentPreview();
-        showToast(' Attachment removed');
+        showToast('Attachment removed');
     }
 
     function clearAllAttachments() {
         if (confirm(`Clear all ${attachments.length} attachments?`)) {
             attachments = [];
             updateAttachmentPreview();
-            showToast(' All attachments cleared');
+            showToast('All attachments cleared');
         }
     }
 
@@ -1195,15 +1190,11 @@
                     <button onclick="event.stopPropagation();renameChatFromHistory(${i})" 
                         style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;padding:4px;font-size:0.85rem;opacity:0;transition:all 0.2s;"
                         class="rename-chat-btn"
-                        title="Rename chat">
-                        
-                    </button>
+                        title="Rename chat">✏️</button>
                     <button onclick="event.stopPropagation();deleteChatFromHistory(${i})" 
                         style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;padding:4px;font-size:0.85rem;opacity:0;transition:all 0.2s;"
                         class="delete-chat-btn"
-                        title="Hapus chat">
-                        
-                    </button>
+                        title="Hapus chat">🗑️</button>
                 </div>
             </div>`
         ).join('');
@@ -1216,7 +1207,7 @@
         if (newTitle && newTitle.trim() !== '') {
             chatSessions[index].title = newTitle.trim();
             updateChatHistory();
-            showToast(' Chat berhasil direname');
+            showToast('Chat berhasil direname');
         }
     }
 
@@ -1225,7 +1216,7 @@
         if (confirm(`Hapus chat "${chatTitle}" dari riwayat?`)) {
             chatSessions.splice(index, 1);
             updateChatHistory();
-            showToast(' Chat dihapus dari riwayat');
+            showToast('Chat dihapus dari riwayat');
         }
     }
 
@@ -1233,7 +1224,7 @@
         const currentTitle = document.getElementById('currentChatTitle').textContent;
         
         if (currentTitle === 'Chat baru') {
-            showToast(' ï¸ Belum ada chat untuk direname');
+            showToast('Belum ada chat untuk direname');
             return;
         }
         
@@ -1443,11 +1434,11 @@
                         message.substring(0, 30) + (message.length > 30 ? '...' : '');
                 }
             } else {
-                addClaudeMessage(` Error: ${data.error || 'Unknown error'}`);
+                addClaudeMessage(`Error: ${data.error || 'Unknown error'}`);'
             }
         } catch (err) {
             hideTyping();
-            addClaudeMessage(` Network error: ${err.message}`);
+            addClaudeMessage(`Koneksi error. Pastikan server berjalan.`);
         } finally {
             isLoading = false;
             document.getElementById('sendBtn').disabled = false;
@@ -1469,7 +1460,7 @@
         const modal = document.getElementById('fileModal');
         modal.classList.add('show');
         
-        showToast(' Loading files...');
+        showToast('Loading files...');
         document.getElementById('githubFileList').innerHTML = '<p style="color:var(--text-muted);">Loading GitHub files...</p>';
         document.getElementById('driveFileList').innerHTML = '<p style="color:var(--text-muted);">Loading Drive files...</p>';
     }
@@ -1478,27 +1469,27 @@
         const modal = document.getElementById('railwayModal');
         modal.classList.add('show');
         
-        showToast(' Loading Railway projects...');
+        showToast('Loading Railway projects...');
         document.getElementById('railwayProjects').innerHTML = '<p style="color:var(--text-muted);">Loading projects...</p>';
     }
 
     async function saveToGithub() {
         if (conversationHistory.length === 0) {
-            showToast(' ï¸ No conversation to save');
+            showToast('No conversation to save');
             return;
         }
         
-        showToast(' Saving to GitHub...');
+        showToast('Saving to GitHub...');
         
         try {
             const response = await fetch('/clear', { method: 'POST' });
             if (response.ok) {
-                showToast(' Saved to GitHub!');
+                showToast('Saved to GitHub!');
             } else {
-                showToast(' Failed to save');
+                showToast('Failed to save');
             }
         } catch (err) {
-            showToast(' Error saving');
+            showToast('Error saving');
         }
     }
 </script>
