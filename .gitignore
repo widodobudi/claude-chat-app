@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.env
+.venv
+venv/
+ENV/
+uploads/*
+!uploads/.gitkeep
+chat_history/
+*.log
+.DS_Store
