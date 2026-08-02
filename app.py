@@ -645,16 +645,15 @@ def get_railway_projects_internal():
     if not RAILWAY_API_TOKEN:
         return {"error": "Railway API token not configured"}
     
+    # Try workspace query first, fallback to personal query
     query = """
     query {
-      me {
-        projects {
-          edges {
-            node {
-              id
-              name
-              description
-            }
+      projects(after: null, before: null, first: 20) {
+        edges {
+          node {
+            id
+            name
+            description
           }
         }
       }
@@ -675,8 +674,38 @@ def get_railway_projects_internal():
         if res.status_code == 200:
             data = res.json()
             if data.get('errors'):
+                # Fallback: try via me query (personal token)
+                query2 = """
+                query {
+                  me {
+                    projects {
+                      edges {
+                        node {
+                          id
+                          name
+                          description
+                        }
+                      }
+                    }
+                  }
+                }
+                """
+                res2 = requests.post(
+                    'https://backboard.railway.app/graphql/v2',
+                    headers={
+                        'Authorization': f'Bearer {RAILWAY_API_TOKEN}',
+                        'Content-Type': 'application/json'
+                    },
+                    json={'query': query2},
+                    timeout=15
+                )
+                if res2.status_code == 200:
+                    data2 = res2.json()
+                    if not data2.get('errors'):
+                        projects = [edge['node'] for edge in data2.get('data', {}).get('me', {}).get('projects', {}).get('edges', [])]
+                        return {"projects": projects}
                 return {"error": f"Railway GraphQL error: {data['errors'][0].get('message', str(data['errors']))}"}
-            projects = [edge['node'] for edge in data.get('data', {}).get('me', {}).get('projects', {}).get('edges', [])]
+            projects = [edge['node'] for edge in data.get('data', {}).get('projects', {}).get('edges', [])]
             return {"projects": projects}
         return {"error": f"Railway API HTTP error: {res.status_code} - {res.text[:200]}"}
     except Exception as e:
