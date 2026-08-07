@@ -1,0 +1,38 @@
+from flask import Flask, render_template, request, jsonify
+import requests
+import os
+import json
+import base64
+import io
+import mimetypes
+from datetime import datetime
+from dotenv import load_dotenv
+from werkzeug.utils import secure_filename
+
+load_dotenv()
+
+app = Flask(__name__)
+
+# ===== KONFIGURASI =====
+CRAZYROUTER_API_KEY = os.getenv('CRAZYROUTER_API_KEY')
+API_HOST            = os.getenv('API_HOST', 'https://api.crazyrouter.com/v1')
+AI_MODEL            = os.getenv('AI_MODEL', 'claude-opus-4-8')
+GITHUB_TOKEN        = os.getenv('GITHUB_TOKEN')
+GITHUB_REPO         = os.getenv('GITHUB_REPO', 'widodobudi/claude-chat-app')
+GOOGLE_CREDS_JSON   = os.getenv('GOOGLE_CREDENTIALS_JSON')
+RAILWAY_API_TOKEN   = os.getenv('RAILWAY_API_TOKEN')
+
+# Upload configuration
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp', 'pdf', 'txt', 'md', 'py', 'js', 'html', 'css', 'json'}
+MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+conversation_history = []
+
+# NOTE: File ini adalah BACKUP dari app.py versi sebelum penambahan
+# fitur baca Microsoft Office (DOCX/XLSX/PPTX). Untuk restore, salin
+# konten file ini kembali ke app.py.
+# Backup dibuat otomatis sebelum perubahan fitur Office parser.
+# Konten lengkap identik dengan app.py yang running saat backup dibuat.
